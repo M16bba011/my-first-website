@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2>🏫 BRIGHT FUTURE SCHOOL</h2>
+        <p class="side-label">MAIN MENU</p>
+
+        <nav>
+            <a href="#" class="nav-link active" data-page="dashboard">🏠 Dashboard</a>
+            <a href="#" class="nav-link" data-page="students">👨‍🎓 Students</a>
+            <a href="#" class="nav-link" data-page="teachers">👩‍🏫 Teachers</a>
+            <a href="#" class="nav-link" data-page="attendance">📅 Attendance</a>
+            <a href="#" class="nav-link" data-page="fees">💰 Fees</a>
+            <a href="#" class="nav-link" data-page="results">📚 Results</a>
+        </nav>
+
+        <p class="sidebar-footer">School Management System</p>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1 id="page-title">Dashboard</h1>
+                <p>Welcome to your school management system.</p>
+            </div>
+            <span class="admin-badge">Administrator</span>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>👨‍🎓 Total Students</span>
+                    <h2 id="total-students">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>👩‍🏫 Total Teachers</span>
+                    <h2 id="total-teachers">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>📅 Attendance Records</span>
+                    <h2 id="total-attendance">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>💰 Fees Collected</span>
+                    <h2 id="total-fees">Rs. 0</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Welcome to BRIGHT FUTURE SCHOOL</h2>
+                <p>Use the menu to manage students, teachers, attendance, fees and results.</p>
+                <div class="quick-actions">
+                    <button class="primary-btn" data-go="students">+ Add Student</button>
+                    <button class="secondary-btn" data-go="attendance">Mark Attendance</button>
+                    <button class="secondary-btn" data-go="fees">Add Fee Record</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDENTS -->
+        <section class="page" id="students">
+            <div class="panel">
+                <h2>Add New Student</h2>
+                <form id="student-form" class="form-grid">
+                    <input name="name" placeholder="Student full name" required>
+                    <input name="roll" placeholder="Roll number" required>
+                    <input name="className" placeholder="Class (e.g. 8th)" required>
+                    <input name="phone" placeholder="Parent phone number">
+                    <button class="primary-btn" type="submit">Save Student</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2>Student Records</h2>
+                    <input id="student-search" placeholder="Search students...">
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Roll No.</th>
+                                <th>Class</th>
+                                <th>Parent Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEACHERS -->
+        <section class="page" id="teachers">
+            <div class="panel">
+                <h2>Add New Teacher</h2>
+                <form id="teacher-form" class="form-grid">
+                    <input name="name" placeholder="Teacher full name" required>
+                    <input name="subject" placeholder="Subject" required>
+                    <input name="phone" placeholder="Phone number">
+                    <button class="primary-btn" type="submit">Save Teacher</button>
+                </form>
+            </div>
+            <div class="panel">
+                <h2>Teacher Records</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teachers-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATTENDANCE -->
+        <section class="page" id="attendance">
+            <div class="panel">
+                <h2>Mark Student Attendance</h2>
+                <form id="attendance-form" class="form-grid">
+                    <select name="studentId" id="attendance-student" required>
+                        <option value="">Select student</option>
+                    </select>
+                    <input type="date" name="date" id="attendance-date" required>
+                    <select name="status" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                        <option value="Late">Late</option>
+                    </select>
+                    <button class="primary-btn" type="submit">Save Attendance</button>
+                </form>
+            </div>
+            <div class="panel">
+                <h2>Attendance Records</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEES -->
+        <section class="page" id="fees">
+            <div class="panel">
+                <h2>Add Fee Record</h2>
+                <form id="fee-form" class="form-grid">
+                    <select name="studentId" id="fee-student" required>
+                        <option value="">Select student</option>
+                    </select>
+                    <input type="number" name="amount" placeholder="Fee amount (Rs.)" min="1" required>
+                    <input type="month" name="month" required>
+                    <select name="status">
+                        <option value="Paid">Paid</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                    <button class="primary-btn" type="submit">Save Fee Record</button>
+                </form>
+            </div>
+            <div class="panel">
+                <h2>Fee Records</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Amount</th>
+                                <th>Month</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fees-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="page" id="results">
+            <div class="panel">
+                <h2>Add Student Result</h2>
+                <form id="result-form" class="form-grid">
+                    <select name="studentId" id="result-student" required>
+                        <option value="">Select student</option>
+                    </select>
+                    <input name="subject" placeholder="Subject name" required>
+                    <input type="number" name="marks" placeholder="Obtained marks" min="0" required>
+                    <input type="number" name="total" placeholder="Total marks" min="1" required>
+                    <button class="primary-btn" type="submit">Save Result</button>
+                </form>
+            </div>
+            <div class="panel">
+                <h2>Student Results</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Percentage</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer>© 2026 School Management System</footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>>
